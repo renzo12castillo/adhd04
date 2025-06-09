@@ -318,6 +318,149 @@
                                     }
                                 </pre>
                             </ul>
+
+                            <h5>¿Qué son los tipos de unión y cómo se declaran?</h5>
+                            <p>
+                                Los tipos de unión en TypeScript permiten que una variable, parámetro o propiedad pueda contener más de un tipo de dato posible. Son útiles cuando un valor puede ser de diferentes tipos, y se declaran usando el símbolo | (barra vertical).
+                            </p>
+                            <p>
+                                Sintaxis basica:
+                            </p>
+                            <code>
+                                let valor: string | number;
+                            </code>
+                            <p>
+                                Ejemplo
+                            </p>
+                            <pre>
+                                function procesar(valor: string | number) {
+                                    if (typeof valor === "string") {
+                                        console.log(valor.toUpperCase());
+                                    } else {
+                                        console.log(valor.toFixed(2));
+                                        }
+                                    }
+                            </pre>
+
+                            <h5>¿Qué es un tipo literal en TypeScript y para qué se utiliza?</h5>
+
+                            <p>
+                                Un tipo literal en TypeScript es un tipo que representa un valor específico y exacto, en lugar de un conjunto amplio de posibles valores como string o number. Un tipo literal restringe una variable a un valor constante o un conjunto limitado de valores exactos.
+                            </p>
+
+                            <pre>
+                                type Direccion = "norte" | "sur" | "este" | "oeste";
+                                let direccion: Direccion;
+                                direccion = "norte";  // Correcto
+                                // direccion = "arriba"; // Error
+                            </pre>
+
+                            <h5>¿Qué son los tipos enumerados (Enums) y cómo se crean?</h5>
+                            <p>
+                                Un enum (abreviatura de enumeración) es un tipo especial que nos permite definir un conjunto de constantes nombradas, ya sean numéricas o de texto (string). Es útil cuando una variable puede tomar un conjunto fijo de valores posibles.
+                            </p>
+
+                            <pre>
+                                enum Direccion {
+                                    Norte,
+                                    Sur,
+                                    Este,
+                                    Oeste
+                                    }
+
+                                let dir: Direccion = Direccion.Norte;
+                                console.log(dir); // 0
+                            </pre>
+
+                            <h5>¿Cómo se define un tipo alias y cuándo es útil?</h5>
+                            <p>
+                                En TypeScript, un tipo alias se define usando la palabra clave type y sirve para crear nombres personalizados para tipos de datos, ya sean primitivos, uniones, objetos, funciones, etc
+                            </p>
+
+                            <p>
+                                Un tipo alias es una forma de nombrar un tipo para reutilizarlo fácilmente y hacer el código más legible y mantenible.
+                            </p>
+                            <pre>
+                                type ID = string | number;
+                                let usuarioId: ID;
+                                usuarioId = "abc123";
+                                usuarioId = 789;
+                            </pre>
+
+                            <h5>¿Cómo se definen las funciones con tipos en TypeScript?</h5>
+                            <p>
+                                En TypeScript, las funciones pueden definirse con tipos explícitos para sus parámetros y su valor de retorno, lo cual mejora la seguridad del código y facilita la detección de errores en tiempo de compilación.
+                            </p>
+                            <pre>
+                                function sumar(a: number, b: number): number {
+                                return a + b;
+                                }
+                            </pre>
+
+                            <h5>¿Qué son los parámetros opcionales y los parámetros predeterminados en funciones?</h5>
+                            <p>
+                                Un parámetro opcional es aquel que puede o no ser proporcionado al llamar a una función. Se indica con un signo de interrogación (?) después del nombre del parámetro.
+                            </p>
+
+                            <pre>
+                                function saludar(nombre?: string): void {
+                                console.log("Hola " + (nombre || "invitado"));
+                                }
+                            </pre>
+
+                            <p>
+                                Un parámetro predeterminado es aquel que tiene un valor por defecto si no se proporciona uno al llamar la función.
+                            </p>
+
+                            <pre>
+                                function saludar(nombre: string = "invitado"): void {
+                                console.log("Hola " + nombre);
+                                }
+                            </pre>
+
+                            <h5>¿Cuáles son algunas mejores prácticas para escribir código limpio y mantenible en TypeScript?</h5>
+                            <ul>
+                                <li><strong>Usa tipos explícitos siempre que sea útil</strong></li>
+                                <p>
+                                    Aunque TypeScript puede inferir tipos, es recomendable declarar explícitamente los tipos de: Funciones, Objetos complejos, Parámetros y retornos. 
+                                </p>
+                                <pre>
+                                    function sumar(a: number, b: number): number {
+                                        return a + b;
+                                    }
+                                </pre>
+                                <li><strong>Prefiere interface para objetos públicos y type para uniones o alias</strong></li>
+                                <p>
+                                    Usar interface para definir estructuras de datos o contratos. Usar type para tipos complejos, combinaciones o alias de funciones. 
+                                </p>
+                                <pre>
+                                    interface Usuario {
+                                        id: number;
+                                        nombre: string;
+                                    }
+                                    type ID = string | number;
+                                </pre>
+                                <li><strong>Evita usar any (usa unknown si es necesario)</strong></li>
+                                <p>
+                                    Any desactiva la verificación de tipos. Si necesitas un tipo aún desconocido, prefiere unknown y haz validaciones.
+                                </p>
+                                <pre>
+                                    function procesarEntrada(valor: unknown) {
+                                        if (typeof valor === "string") {
+                                        console.log(valor.toUpperCase());
+                                        }
+                                    }
+                                </pre>
+                                <li><strong>Usa enums o tipos literales para valores limitados</strong></li>
+                                <p>
+                                    Esto mejora la legibilidad y reduce errores con valores no válidos.
+                                </p>
+                                <pre>
+                                    type Rol = "admin" | "user" | "guest";
+
+                                    function asignarPermiso(rol: Rol) { ... }
+                                </pre>
+                            </ul>
                         </div>
                     </div>
                 </div>

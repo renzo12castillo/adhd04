@@ -1,8 +1,10 @@
-const BTN_CALCULAR_AREA = document.getElementById("btn_calcular_promedio") as HTMLButtonElement; 
+const BTN_CALCULAR_AREA = document.getElementById("btn_calcular_area") as HTMLButtonElement; 
 let base = document.getElementById("txt_base") as HTMLInputElement; 
 let altura = document.getElementById("txt_altura") as HTMLInputElement; 
 
 BTN_CALCULAR_AREA?.addEventListener('click', ()=> {
+
+
 
     const BASE_CONV = parseFloat(base.value); 
     const ALTURA_CONV = parseFloat(altura.value); 
@@ -17,4 +19,10 @@ BTN_CALCULAR_AREA?.addEventListener('click', ()=> {
     }
 
     const RESULTADO = (BASE_CONV * ALTURA_CONV) / 2; 
+    const CONTENEDOR = document.getElementById("contenedor_de_resultados") as HTMLElement; 
+    if (CONTENEDOR) {
+        CONTENEDOR.innerHTML = `<p>El area del triangulo es: ${RESULTADO.toFixed(2)}cm²</p>`; 
+    } else {
+        console.error("El contenedor de resultados no se encontró.");
+    }
 })
